@@ -1,0 +1,15 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex">
+<title>KI-Leon TikTok-Anmeldung</title><style>body{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;color:#222;background:#fff}@media(prefers-color-scheme:dark){body{color:#ddd;background:#161616}textarea{background:#222;color:#ddd}}textarea{width:100%;box-sizing:border-box;height:9em;font:13px monospace}button{font:inherit;padding:8px 18px;margin-top:8px}</style>
+<h1>TikTok-Anmeldung</h1>
+<p id="info">Diese Adresse komplett kopieren und innerhalb von 10 Minuten an den Telegram-Bot schicken.</p>
+<textarea id="adr" readonly></textarea><br><button id="kopie">Adresse kopieren</button> <span id="ok"></span>
+<p style="font-size:14px;opacity:.7">Diese Seite sendet nichts weiter, sie zeigt nur die Adresse an. <a href="./">KI-Leon</a></p>
+<script>
+const a=document.getElementById('adr');a.value=location.href;
+const q=new URLSearchParams(location.search);
+if(q.get('error'))document.getElementById('info').textContent='TikTok meldet einen Fehler: '+(q.get('error_description')||q.get('error'))+'. Adresse trotzdem an den Bot schicken oder /tiktok login neu starten.';
+else if(!q.get('code'))document.getElementById('info').textContent='Hier fehlt der Anmeldecode. Bitte /tiktok login im Bot starten.';
+document.getElementById('kopie').onclick=async()=>{a.select();try{await navigator.clipboard.writeText(a.value)}catch(e){document.execCommand('copy')}document.getElementById('ok').textContent='kopiert ✓'};
+</script>
+</html>
